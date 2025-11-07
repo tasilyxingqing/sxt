@@ -61,22 +61,10 @@ ruoyi-wvp是基于ruoyi-vue和wvp框架的全部开源的GB/T 28181-2016标准�
 
 
 
-## 前端源码
-
-加qq群获取最新前端vue3代码
-QQ群： [![加入QQ群](https://img.shields.io/badge/已满-958943550-blue.svg)]()
 
 <p align="center">
  <img width="200" alt="logo" src="https://ruoyi-wvp-1308576884.cos.ap-guangzhou.myqcloud.com/ruoyi-wvp/upload/qq-crowd-2.jpg">
 </p>
-
-## 在线体验
-
-演示地址：http://java.ruoyi-wvp.top   <br />
-账号：ry <br />
-密码：123456 <br />
-
-文档地址：http://doc.ruoyi-wvp.top:85/
 
 ## 国标协议
 
@@ -268,7 +256,6 @@ QQ群： [![加入QQ群](https://img.shields.io/badge/已满-958943550-blue.svg)
     </tr>
 </table>
 
-如需乐橙云协议可vx私！ 前10购买优惠多多！！！
 
 最低1折起！！！
 
@@ -284,16 +271,4 @@ QQ群： [![加入QQ群](https://img.shields.io/badge/已满-958943550-blue.svg)
 - 感谢作者[若依](https://ruoyi.vip/) 开源了这么棒快速开发框架。
 - 感谢作者[go-view](https://gitee.com/dromara/go-view) 开源了这么棒的大屏应用框架。
 
-## 赞赏方式
-
-ry-wvp 全面支持微信/支付宝赞赏,江山父老可以请作者喝杯☕️咖啡吗qwq
-
-如果你感觉项目对你有帮助,可以扫码进行捐赠qwq
-
-<table>
-    <tr>
-        <td><img width="200" height="300" height="300" src="https://ry-wvp-1315132478.cos.ap-guangzhou.myqcloud.com/收款码.png"/></td>
-        <td><img width="200" height="300" src="https://ruoyi-wvp-1308576884.cos.ap-guangzhou.myqcloud.com/ruoyi-wvp/upload/wx-pay.png"/></td>
-    </tr>
-</table>
 
