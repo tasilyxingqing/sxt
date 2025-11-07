@@ -1,0 +1,44 @@
+/* my/index.wxss */
+.container {
+  padding: 32rpx;
+  background: #f8f9fa;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40rpx;
+}
+.avatar {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  margin-bottom: 16rpx;
+}
+.nickname {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 8rpx;
+}
+.department, .position {
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 4rpx;
+}
+.logout-btn {
+  width: 100%;
+  background: #ff4d4f;
+  color: #fff;
+  border-radius: 16rpx;
+  font-size: 28rpx;
+  padding: 16rpx 0;
+  transition: background 0.3s ease;
+}
+.logout-btn:hover {
+  background: #ff7875;
+}

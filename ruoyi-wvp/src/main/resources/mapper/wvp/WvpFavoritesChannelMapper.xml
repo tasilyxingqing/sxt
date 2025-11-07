@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.wvp.mapper.WvpFavoritesChannelMapper">
+
+    <resultMap type="com.ruoyi.wvp.service.bean.WvpFavoritesChannel" id="WvpFavoritesChannelResult">
+        <result property="favoritesId"    column="favorites_id"    />
+        <result property="channelId"    column="channel_id"    />
+        <result property="gbName"    column="gb_name"    />
+        <result property="gbParentid"    column="gb_parentId"    />
+        <result property="gbDeviceid"    column="gb_deviceId"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="remark"    column="remark"    />
+    </resultMap>
+
+    <sql id="selectWvpFavoritesChannelVo">
+        select favorites_id, channel_id, gb_name, gb_parentId, gb_deviceId, create_by, create_time, update_by, update_time, remark from wvp_favorites_channel
+    </sql>
+
+    <select id="selectWvpFavoritesChannelList" parameterType="com.ruoyi.wvp.service.bean.WvpFavoritesChannel" resultMap="WvpFavoritesChannelResult">
+        <include refid="selectWvpFavoritesChannelVo"/>
+        <where>
+            <if test="favoritesId != null "> and favorites_id = #{favoritesId}</if>
+            <if test="channelId != null "> and channel_id = #{channelId}</if>
+            <if test="gbName != null  and gbName != ''"> and gb_name like concat('%', #{gbName}, '%')</if>
+            <if test="gbParentid != null  and gbParentid != ''"> and gb_parentId = #{gbParentid}</if>
+            <if test="gbDeviceid != null  and gbDeviceid != ''"> and gb_deviceId = #{gbDeviceid}</if>
+        </where>
+    </select>
+
+    <select id="selectWvpFavoritesChannelByFavoritesId" parameterType="Long" resultMap="WvpFavoritesChannelResult">
+        <include refid="selectWvpFavoritesChannelVo"/>
+        where favorites_id = #{favoritesId}
+    </select>
+
+    <insert id="insertWvpFavoritesChannel" parameterType="com.ruoyi.wvp.service.bean.WvpFavoritesChannel">
+        insert into wvp_favorites_channel
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="favoritesId != null">favorites_id,</if>
+            <if test="channelId != null">channel_id,</if>
+            <if test="gbName != null">gb_name,</if>
+            <if test="gbParentid != null">gb_parentId,</if>
+            <if test="gbDeviceid != null">gb_deviceId,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="remark != null">remark,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="favoritesId != null">#{favoritesId},</if>
+            <if test="channelId != null">#{channelId},</if>
+            <if test="gbName != null">#{gbName},</if>
+            <if test="gbParentid != null">#{gbParentid},</if>
+            <if test="gbDeviceid != null">#{gbDeviceid},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="remark != null">#{remark},</if>
+         </trim>
+    </insert>
+
+    <update id="updateWvpFavoritesChannel" parameterType="com.ruoyi.wvp.service.bean.WvpFavoritesChannel">
+        update wvp_favorites_channel
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="channelId != null">channel_id = #{channelId},</if>
+            <if test="gbName != null">gb_name = #{gbName},</if>
+            <if test="gbParentid != null">gb_parentId = #{gbParentid},</if>
+            <if test="gbDeviceid != null">gb_deviceId = #{gbDeviceid},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="remark != null">remark = #{remark},</if>
+        </trim>
+        where channel_id = #{channelId}
+    </update>
+
+    <delete id="deleteWvpFavoritesChannelByFavoritesId" parameterType="Long">
+        delete from wvp_favorites_channel where favorites_id = #{favoritesId}
+    </delete>
+
+    <delete id="deleteWvpFavoritesChannelByFavoritesIds" parameterType="String">
+        delete from wvp_favorites_channel where favorites_id in
+        <foreach item="favoritesId" collection="array" open="(" separator="," close=")">
+            #{favoritesId}
+        </foreach>
+    </delete>
+
+    <select id="selectWvpFavoritesChannelBychannelId" parameterType="Long" resultMap="WvpFavoritesChannelResult">
+        <include refid="selectWvpFavoritesChannelVo"/>
+        where channel_id = #{channel_id}
+    </select>
+</mapper>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.dahua.mapper.DahuaDeviceScreenshotMapper">
+    
+    <resultMap type="DahuaDeviceScreenshot" id="DahuaDeviceScreenshotResult">
+        <result property="id"    column="id"    />
+        <result property="dahuaDeviceId"    column="dahua_device_id"    />
+        <result property="image"    column="image"    />
+        <result property="createTime"    column="create_time"    />
+    </resultMap>
+
+    <sql id="selectDahuaDeviceScreenshotVo">
+        select id,dahua_device_id, image, create_time from dahua_device_screenshot
+    </sql>
+
+    <select id="selectDahuaDeviceScreenshotList" parameterType="DahuaDeviceScreenshot" resultMap="DahuaDeviceScreenshotResult">
+        <include refid="selectDahuaDeviceScreenshotVo"/>
+        <where>  
+            <if test="dahuaDeviceId != null  and dahuaDeviceId != ''"> and dahua_device_id = #{dahuaDeviceId}</if>
+        </where>
+        order by create_time desc
+    </select>
+
+    <insert id="insertDahuaDeviceScreenshot" parameterType="DahuaDeviceScreenshot">
+        insert into dahua_device_screenshot
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="dahuaDeviceId != null">dahua_device_id,</if>
+            <if test="image != null">image,</if>
+            <if test="createTime != null">create_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="dahuaDeviceId != null">#{dahuaDeviceId},</if>
+            <if test="image != null">#{image},</if>
+            <if test="createTime != null">#{createTime},</if>
+         </trim>
+    </insert>
+
+    <delete id="deleteDahuaDeviceScreenshotByIds" parameterType="Long">
+        delete from dahua_device_screenshot where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

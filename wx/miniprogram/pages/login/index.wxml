@@ -1,0 +1,24 @@
+<!--pages/login/index.wxml-->
+<view class="main">
+  <view class="form">
+    <t-tabs defaultValue="{{0}}" theme="card">
+      <t-tab-panel label="登录" value="0">
+        <view class="formDare">
+          <t-input prefixIcon="user-1" placeholder="请输入用户名" style="margin-top: 20rpx;" value="{{loginForm.username}}" data-field-name="username" bind:change="handleInputChange" />
+          <t-input prefixIcon="user-password" placeholder="请输入密码" style="margin-top: 20rpx;" value="{{loginForm.password}}" data-field-name="password" bind:change="handleInputChange" type="password" />
+          <t-input prefixIcon="user-safety" placeholder="请输入验证码" style="margin-top: 20rpx;" wx:if="{{captchaEnabled}}" data-field-name="code"  bind:change="handleInputChange" value="{{loginForm.code}}" >
+            <view slot="suffix" class="suffix">
+              <image class="image" src="{{codeUrl}}" mode="heightFix" aria-role="img" aria-label="验证码" bind:tap="getCode" />
+            </view>
+          </t-input>
+          <t-button theme="primary" size="large" loading="{{loadingButton}}" block style="margin-top: 30rpx;" bind:tap="handleLogin">登录</t-button>
+        </view>
+      </t-tab-panel>
+      <t-tab-panel label="注册" value="1">
+        <t-empty t-class="empty-cls" t-class-image="t-empty__image" image="{{regImage}}" description="暂不支持注册" />
+      </t-tab-panel>
+    </t-tabs>
+  </view>
+
+  <t-toast id="t-toast" />
+</view>

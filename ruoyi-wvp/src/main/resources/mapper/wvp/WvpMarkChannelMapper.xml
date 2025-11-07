@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.wvp.mapper.WvpMarkChannelMapper">
+
+    <resultMap type="com.ruoyi.wvp.service.bean.WvpMarkChannel" id="WvpMarkChannelResult">
+        <result property="channelId"    column="channel_id"    />
+        <result property="markId"    column="mark_id"    />
+        <result property="gbName"    column="gb_name"    />
+        <result property="gbParentid"    column="gb_parentId"    />
+        <result property="gbDeviceid"    column="gb_deviceId"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="remark"    column="remark"    />
+    </resultMap>
+
+    <sql id="selectWvpMarkChannelVo">
+        select channel_id, mark_id, gb_name, gb_parentId, gb_deviceId, create_by, create_time, update_by, update_time, remark from wvp_mark_channel
+    </sql>
+
+    <select id="selectWvpMarkChannelList" parameterType="com.ruoyi.wvp.service.bean.WvpMarkChannel" resultMap="WvpMarkChannelResult">
+        <include refid="selectWvpMarkChannelVo"/>
+        <where>
+            <if test="markId != null "> and mark_id = #{markId}</if>
+            <if test="gbName != null  and gbName != ''"> and gb_name like concat('%', #{gbName}, '%')</if>
+            <if test="gbParentid != null  and gbParentid != ''"> and gb_parentId = #{gbParentid}</if>
+            <if test="gbDeviceid != null  and gbDeviceid != ''"> and gb_deviceId = #{gbDeviceid}</if>
+        </where>
+    </select>
+
+    <select id="selectWvpMarkChannelByChannelId" parameterType="Long" resultMap="WvpMarkChannelResult">
+        <include refid="selectWvpMarkChannelVo"/>
+        where channel_id = #{channelId}
+    </select>
+
+    <insert id="insertWvpMarkChannel" parameterType="com.ruoyi.wvp.service.bean.WvpMarkChannel">
+        insert into wvp_mark_channel
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="channelId != null">channel_id,</if>
+            <if test="markId != null">mark_id,</if>
+            <if test="gbName != null and gbName != ''">gb_name,</if>
+            <if test="gbParentid != null and gbParentid != ''">gb_parentId,</if>
+            <if test="gbDeviceid != null and gbDeviceid != ''">gb_deviceId,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="remark != null">remark,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="channelId != null">#{channelId},</if>
+            <if test="markId != null">#{markId},</if>
+            <if test="gbName != null and gbName != ''">#{gbName},</if>
+            <if test="gbParentid != null and gbParentid != ''">#{gbParentid},</if>
+            <if test="gbDeviceid != null and gbDeviceid != ''">#{gbDeviceid},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="remark != null">#{remark},</if>
+         </trim>
+    </insert>
+
+    <update id="updateWvpMarkChannel" parameterType="com.ruoyi.wvp.service.bean.WvpMarkChannel">
+        update wvp_mark_channel
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="markId != null">mark_id = #{markId},</if>
+            <if test="gbName != null and gbName != ''">gb_name = #{gbName},</if>
+            <if test="gbParentid != null and gbParentid != ''">gb_parentId = #{gbParentid},</if>
+            <if test="gbDeviceid != null and gbDeviceid != ''">gb_deviceId = #{gbDeviceid},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="remark != null">remark = #{remark},</if>
+        </trim>
+        where channel_id = #{channelId}
+    </update>
+
+    <delete id="deleteWvpMarkChannelByChannelId" parameterType="Long">
+        delete from wvp_mark_channel where channel_id = #{channelId}
+    </delete>
+
+    <delete id="deleteWvpMarkChannelByChannelIds" parameterType="String">
+        delete from wvp_mark_channel where channel_id in
+        <foreach item="channelId" collection="array" open="(" separator="," close=")">
+            #{channelId}
+        </foreach>
+    </delete>
+</mapper>

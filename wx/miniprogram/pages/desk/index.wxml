@@ -1,0 +1,18 @@
+<!--pages/desk/index.wxml-->
+<view class="container">
+  <view class="head">
+  <view class="column"></view>
+  <view class="menu">设备列表</view>
+</view>
+
+  <view class="device-list">
+    <view class="device-card" wx:for="{{deviceList}}" wx:key="id">
+      <view class="device-info">
+        <text class="device-name">{{item.name}}</text>
+        <view> <text class="device-ip">IP地址：{{item.ip}}</text></view>
+        <text class="device-manufacturer">厂家：{{item.manufacturer}}</text>
+      </view>
+      <button class="view-btn" bindtap="viewChannels" data-item="{{item}}">查看通道</button>
+    </view>
+  </view>
+</view>

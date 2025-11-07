@@ -1,0 +1,24 @@
+<!--pages/streamProxy/index.wxml-->
+<view wx:if="{{total === 0}}">
+  <t-empty t-class="empty-cls" t-class-image="t-empty__image" image="{{image}}" description="无拉流数据" />
+</view>
+
+<view wx:else>
+  <view class="container">
+
+  <view class="stream-list">
+    <view class="stream-card" wx:for="{{streamList}}" wx:key="id">
+      <view class="stream-info">
+        <text class="stream-name">流应用名: {{item.app}}</text>
+        <text class="stream-app">流ID: {{item.stream}}</text>
+        <text class="stream-id">流媒体：{{item.mediaServerId}}</text>
+        <view>
+        <text wx-if="{{item.pulling}}" class="stream-status status-active">正在拉流</text>
+        <text wx:else class="stream-status status-inactive">尚未拉流</text>
+        </view>
+      </view>
+      <button class="play-btn" bindtap="playStream" data-item="{{item}}">播放</button>
+    </view>
+  </view>
+</view>
+</view>

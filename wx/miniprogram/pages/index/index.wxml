@@ -1,0 +1,30 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="header">
+    <text class="title">国标监控平台</text>
+    <text class="subtitle">实时监控 · 安全守护</text>
+  </view>
+
+  <view class="overview">
+    <view class="overview-item">
+      <text class="label">全部设备</text>
+      <text class="value">{{indexQuery.allCount}}</text>
+    </view>
+    <view class="overview-item">
+      <text class="label">在线设备</text>
+      <text class="value">{{indexQuery.lineCount}}</text>
+    </view>
+    <view class="overview-item">
+      <text class="label">离线设备</text>
+      <text class="value">{{indexQuery.offlineCount}}</text>
+    </view>
+  </view>
+
+  <view class="quick-actions">
+    <button class="action-btn" bindtap="gotoPage" data-type="streamPush">推流列表</button>
+    <button class="action-btn" bindtap="gotoPage" data-type="streamProxy">拉流列表</button>
+    <button class="action-btn" bindtap="gotoPage" data-type="cloudRecord">云端录像</button>
+  </view>
+</view>
+
+<t-toast id="t-toast" />

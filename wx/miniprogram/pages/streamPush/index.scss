@@ -1,0 +1,84 @@
+/* pages/streamPush/index.wxss */
+
+.t-empty__image {
+  width: 240rpx !important;
+  height: 240rpx !important;
+}
+
+.container {
+  padding: 32rpx;
+  background: #f8f9fa;
+  min-height: 100vh;
+}
+.header {
+  text-align: center;
+  margin-bottom: 40rpx;
+}
+.title {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #222;
+}
+.stream-list {
+  display: flex;
+  flex-direction: column;
+  gap: 32rpx;
+}
+.stream-card {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 40rpx;
+  box-shadow: 0 2rpx 8rpx #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 240rpx;
+  transition: transform 0.3s ease;
+}
+.stream-card:hover {
+  transform: translateY(-4rpx);
+}
+.stream-info {
+  flex: 1;
+}
+.stream-name {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 16rpx;
+  display: block;
+}
+.stream-details {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+.stream-app, .stream-id, .stream-time {
+  font-size: 28rpx;
+  color: #666;
+}
+.stream-status {
+  font-size: 24rpx;
+  border-radius: 8rpx;
+  padding: 2rpx 16rpx;
+  display: inline-block;
+  margin-top: 8rpx;
+}
+.status-active {
+  background: #e6f7e6;
+  color: #52c41a;
+}
+.status-inactive {
+  background: #fff1f0;
+  color: #f5222d;
+}
+.play-btn {
+  background: #007aff;
+  color: #fff;
+  border-radius: 16rpx;
+  font-size: 28rpx;
+  transition: background 0.3s ease;
+}
+.play-btn:hover {
+  background: #0056b3;
+}

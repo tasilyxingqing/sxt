@@ -1,0 +1,19 @@
+<!--pages/channel/index.wxml-->
+<view class="container">
+  <view class="record-list">
+    <view class="record-card" wx:for="{{channelList}}" wx:key="id">
+      <view class="record-info">
+        <text class="record-app">名称：{{item.name}}</text>
+        <view>
+          <text class="record-time">厂家: {{item.manufacturer}}</text>
+        </view>
+        <text class="record-time">云台：{{item.ptzTypeText}}</text>
+      </view>
+      <button class="play-btn" bindtap="play" data-item="{{item}}">播放</button>
+    </view>
+  </view>
+  <view class="bottom" wx:if="{{!hasMore && recordList.length > 0}}">
+    没有更多了
+  </view>
+</view>
+<t-toast id="t-toast" />

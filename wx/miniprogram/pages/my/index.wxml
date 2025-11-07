@@ -1,0 +1,11 @@
+<!--pages/my/index.wxml-->
+<view class="container">
+  <view class="user-info">
+    <image class="avatar" src="{{userInfo.avatarUrl}}" mode="aspectFill"></image>
+    <text class="nickname">{{userInfo.nickName}}</text>
+    <text class="department">部门：{{userInfo.department}}</text>
+    <text class="position">岗位：{{userInfo.position}}</text>
+  </view>
+
+  <button class="logout-btn" bindtap="logout">退出登录</button>
+</view>

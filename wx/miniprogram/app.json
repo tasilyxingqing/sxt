@@ -1,0 +1,79 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/desk/index",
+    "pages/my/index",
+    "pages/login/index",
+    "pages/streamPush/index",
+    "pages/videoPlayer/index",
+    "pages/streamProxy/index",
+    "pages/cloudRecord/index",
+    "pages/channel/index"
+  ],
+  "tabBar": {
+    "color": "#707070",
+    "selectedColor": "#0052d9",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "pages/image/tabBar/index.png",
+        "selectedIconPath": "pages/image/tabBar/index2.png"
+      },
+      {
+        "pagePath": "pages/desk/index",
+        "text": "工作台",
+        "iconPath": "pages/image/tabBar/gzt.png",
+        "selectedIconPath": "pages/image/tabBar/gzt2.png"
+      },
+      {
+        "pagePath": "pages/my/index",
+        "text": "我的",
+        "iconPath": "pages/image/tabBar/my.png",
+        "selectedIconPath": "pages/image/tabBar/my1.png"
+      }
+    ]
+  },
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "拼命加载中...",
+    "navigationBarBackgroundColor": "#ffffff"
+  },
+  "rendererOptions": {
+    "skyline": {
+      "defaultDisplayBlock": true,
+      "defaultContentBox": true,
+      "tagNameStyleIsolation": "legacy",
+      "disableABTest": true,
+      "sdkVersionBegin": "3.0.0",
+      "sdkVersionEnd": "15.255.255"
+    }
+  },
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "resolveAlias": {
+    "@/*": "/*"
+  },
+  "usingComponents": {
+    "t-button": "tdesign-miniprogram/button/button",
+    "t-icon": "tdesign-miniprogram/icon/icon",
+    "t-picker": "tdesign-miniprogram/picker/picker",
+    "t-picker-item": "tdesign-miniprogram/picker-item/picker-item",
+    "t-input": "tdesign-miniprogram/input/input",
+    "t-search": "tdesign-miniprogram/search/search",
+    "t-avatar": "tdesign-miniprogram/avatar/avatar",
+    "t-avatar-group": "tdesign-miniprogram/avatar-group/avatar-group",
+    "t-cell": "tdesign-miniprogram/cell/cell",
+    "t-cell-group": "tdesign-miniprogram/cell-group/cell-group",
+    "t-empty": "tdesign-miniprogram/empty/empty",
+    "t-image": "tdesign-miniprogram/image/image",
+    "t-tag": "tdesign-miniprogram/tag/tag",
+    "t-check-tag": "tdesign-miniprogram/check-tag/check-tag",
+    "t-dialog": "tdesign-miniprogram/dialog/dialog",
+    "t-message": "tdesign-miniprogram/message/message",
+    "t-toast": "tdesign-miniprogram/toast/toast",
+    "t-grid": "tdesign-miniprogram/grid/grid",
+    "t-grid-item": "tdesign-miniprogram/grid-item/grid-item"
+  },
+  "lazyCodeLoading": "requiredComponents"
+}

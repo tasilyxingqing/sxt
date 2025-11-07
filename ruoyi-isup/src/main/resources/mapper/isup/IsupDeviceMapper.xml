@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.isup.mapper.IsupDeviceMapper">
+
+    <resultMap type="IsupDevice" id="IsupDeviceResult">
+        <result property="id" column="id"/>
+        <result property="deptId" column="dept_id"/>
+        <result property="deviceId" column="device_id"/>
+        <result property="name" column="name"/>
+        <result property="channel" column="channel"/>
+        <result property="playType"    column="play_type"    />
+        <result property="url"    column="url"    />
+        <result property="streamId"    column="stream_id"    />
+        <result property="easyNTSUrl"    column="easy_NTS_url"    />
+        <result property="dwSize" column="dw_size"/>
+        <result property="dwNetUnitType" column="dw_net_unit_type"/>
+        <result property="firmwareVersion" column="firmware_version"/>
+        <result property="ipAddress" column="ip_address"/>
+        <result property="port" column="port"/>
+        <result property="deviceRes" column="device_res"/>
+        <result property="devType" column="dev_type"/>
+        <result property="manufacture" column="manufacture"/>
+        <result property="userName" column="user_name"/>
+        <result property="password" column="password"/>
+        <result property="deviceSerial" column="device_serial"/>
+        <result property="reliableTransmission" column="reliable_transmission"/>
+        <result property="websocketTransmission" column="websocket_transmission"/>
+        <result property="supportRedirect" column="support_redirect"/>
+        <result property="devProtocolVersion" column="dev_protocol_version"/>
+        <result property="sessionKey" column="session_key"/>
+        <result property="res" column="res"/>
+        <result property="marketType" column="market_type"/>
+        <result property="luserId" column="luser_id"/>
+        <result property="status" column="status"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
+        <result property="deptName" column="dept_name"/>
+        <result property="lat" column="lat"/>
+        <result property="lng" column="lng"/>
+        <result property="addressMap" column="address_map"/>
+    </resultMap>
+
+    <sql id="selectIsupDeviceVo">
+        select i.id,
+               i.dept_id,
+               i.device_id,
+               i.name,
+               i.channel,
+               i.play_type,
+               i.url,
+               i.stream_id,
+               i.easy_NTS_url,
+               i.dw_size,
+               i.dw_net_unit_type,
+               i.firmware_version,
+               i.ip_address,
+               i.port,
+               i.device_res,
+               i.dev_type,
+               i.manufacture,
+               i.user_name,
+               i.password,
+               i.device_serial,
+               i.reliable_transmission,
+               i.websocket_transmission,
+               i.support_redirect,
+               i.dev_protocol_version,
+               i.session_key,
+               i.res,
+               i.market_type,
+               i.luser_id,
+               i.`status`,
+               i.create_by,
+               i.create_time,
+               i.update_by,
+               i.update_time,
+               i.remark,
+               i.lat,
+               i.lng,
+               i.address_map,
+               d.dept_name
+        from isup_device i
+                 left join sys_dept d on i.dept_id = d.dept_id
+    </sql>
+
+    <select id="selectIsupDeviceList" parameterType="IsupDevice" resultMap="IsupDeviceResult">
+        <include refid="selectIsupDeviceVo"/>
+        <where>
+            <if test="deptId != null">and (i.dept_id = #{deptId} OR i.dept_id IN ( SELECT t.dept_id FROM sys_dept t WHERE find_in_set(#{deptId}, ancestors) ))</if>
+            <if test="deviceId != null  and deviceId != ''">and i.device_id = #{deviceId}</if>
+            <if test="dwSize != null ">and i.dw_size = #{dwSize}</if>
+            <if test="dwNetUnitType != null ">and i.dw_net_unit_type = #{dwNetUnitType}</if>
+            <if test="firmwareVersion != null  and firmwareVersion != ''">and i.firmware_version = #{firmwareVersion}</if>
+            <if test="ipAddress != null  and ipAddress != ''">and i.ip_address = #{ipAddress}</if>
+            <if test="port != null ">and i.port = #{port}</if>
+            <if test="deviceRes != null  and deviceRes != ''">and i.device_res = #{deviceRes}</if>
+            <if test="devType != null ">and i.dev_type = #{devType}</if>
+            <if test="manufacture != null ">and i.manufacture = #{manufacture}</if>
+            <if test="deviceSerial != null  and deviceSerial != ''">and i.device_serial = #{deviceSerial}</if>
+            <if test="reliableTransmission != null ">and i.reliable_transmission = #{reliableTransmission}</if>
+            <if test="websocketTransmission != null ">and i.websocket_transmission = #{websocketTransmission}</if>
+            <if test="supportRedirect != null ">and i.support_redirect = #{supportRedirect}</if>
+            <if test="devProtocolVersion != null  and devProtocolVersion != ''">and i.dev_protocol_version =
+                #{devProtocolVersion}
+            </if>
+            <if test="sessionKey != null  and sessionKey != ''">and i.session_key = #{sessionKey}</if>
+            <if test="res != null  and res != ''">and i.res = #{res}</if>
+            <if test="marketType != null ">and i.market_type = #{marketType}</if>
+            <if test="luserId != null ">and i.luser_id = #{luserId}</if>
+            <if test="status != null ">and i.status = #{status}</if>
+            <if test="name != null ">and i.name like concat('%', #{name}, '%')</if>
+
+
+            <!-- 数据范围过滤 -->
+            ${params.dataScope}
+        </where>
+
+        order by i.create_time desc
+    </select>
+
+    <select id="selectIsupDeviceById" parameterType="Long" resultMap="IsupDeviceResult">
+        <include refid="selectIsupDeviceVo"/>
+        where i.id = #{id}
+    </select>
+
+    <select id="selectIsupDeviceByLuserIdAndIp" resultMap="IsupDeviceResult">
+        <include refid="selectIsupDeviceVo"/>
+        where luser_id = #{lUserID} and ip_address = #{ipAddress}
+    </select>
+
+    <select id="selectAllIsupDeviceList" resultMap="IsupDeviceResult">
+        select
+            *
+        from isup_device
+        order by create_time desc
+    </select>
+    <select id="selectIsupDeviceListMap" parameterType="IsupDevice" resultMap="IsupDeviceResult">
+        <include refid="selectIsupDeviceVo"/>
+        <where>
+            <if test="deptId != null">and (i.dept_id = #{deptId} OR i.dept_id IN ( SELECT t.dept_id FROM sys_dept t WHERE find_in_set(#{deptId}, ancestors) ))</if>
+            <if test="deviceId != null  and deviceId != ''">and i.device_id = #{deviceId}</if>
+            <if test="dwSize != null ">and i.dw_size = #{dwSize}</if>
+            <if test="dwNetUnitType != null ">and i.dw_net_unit_type = #{dwNetUnitType}</if>
+            <if test="firmwareVersion != null  and firmwareVersion != ''">and i.firmware_version = #{firmwareVersion}</if>
+            <if test="ipAddress != null  and ipAddress != ''">and i.ip_address = #{ipAddress}</if>
+            <if test="port != null ">and i.port = #{port}</if>
+            <if test="deviceRes != null  and deviceRes != ''">and i.device_res = #{deviceRes}</if>
+            <if test="devType != null ">and i.dev_type = #{devType}</if>
+            <if test="manufacture != null ">and i.manufacture = #{manufacture}</if>
+            <if test="deviceSerial != null  and deviceSerial != ''">and i.device_serial = #{deviceSerial}</if>
+            <if test="reliableTransmission != null ">and i.reliable_transmission = #{reliableTransmission}</if>
+            <if test="websocketTransmission != null ">and i.websocket_transmission = #{websocketTransmission}</if>
+            <if test="supportRedirect != null ">and i.support_redirect = #{supportRedirect}</if>
+            <if test="devProtocolVersion != null  and devProtocolVersion != ''">and i.dev_protocol_version =
+                #{devProtocolVersion}
+            </if>
+            <if test="sessionKey != null  and sessionKey != ''">and i.session_key = #{sessionKey}</if>
+            <if test="res != null  and res != ''">and i.res = #{res}</if>
+            <if test="marketType != null ">and i.market_type = #{marketType}</if>
+            <if test="luserId != null ">and i.luser_id = #{luserId}</if>
+            <if test="status != null ">and i.status = #{status}</if>
+            <if test="name != null ">and i.name like concat('%', #{name}, '%')</if>
+            and lat IS NOT NULL AND lng IS NOT NULL
+
+            <!-- 数据范围过滤 -->
+            ${params.dataScope}
+        </where>
+
+        order by i.create_time desc
+    </select>
+
+    <insert id="insertIsupDevice" parameterType="IsupDevice" useGeneratedKeys="true" keyProperty="id">
+        insert into isup_device
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="deptId != null">dept_id,</if>
+            <if test="deviceId != null and deviceId != ''">device_id,</if>
+            <if test="name != null and name != ''">name,</if>
+            <if test="channel != null and channel != ''">channel,</if>
+            <if test="playType != null">play_type,</if>
+            <if test="url != null">url,</if>
+            <if test="streamId != null">stream_id,</if>
+            <if test="easyNTSUrl != null">easy_NTS_url,</if>
+            <if test="dwSize != null">dw_size,</if>
+            <if test="dwNetUnitType != null">dw_net_unit_type,</if>
+            <if test="firmwareVersion != null">firmware_version,</if>
+            <if test="ipAddress != null">ip_address,</if>
+            <if test="port != null">port,</if>
+            <if test="deviceRes != null">device_res,</if>
+            <if test="devType != null">dev_type,</if>
+            <if test="manufacture != null">manufacture,</if>
+            <if test="userName != null">user_name,</if>
+            <if test="password != null">password,</if>
+            <if test="deviceSerial != null">device_serial,</if>
+            <if test="reliableTransmission != null">reliable_transmission,</if>
+            <if test="websocketTransmission != null">websocket_transmission,</if>
+            <if test="supportRedirect != null">support_redirect,</if>
+            <if test="devProtocolVersion != null">dev_protocol_version,</if>
+            <if test="sessionKey != null">session_key,</if>
+            <if test="res != null">res,</if>
+            <if test="marketType != null">market_type,</if>
+            <if test="luserId != null">luser_id,</if>
+            <if test="status != null">status,</if>
+            <if test="lat != null">lat,</if>
+            <if test="lng != null">lng,</if>
+            <if test="addressMap != null">address_map,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="remark != null">remark,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="deptId != null">#{deptId},</if>
+            <if test="deviceId != null and deviceId != ''">#{deviceId},</if>
+            <if test="name != null and name != ''">#{name},</if>
+            <if test="channel != null and channel != ''">#{channel},</if>
+            <if test="playType != null">#{playType},</if>
+            <if test="url != null">#{url},</if>
+            <if test="streamId != null">#{streamId},</if>
+            <if test="easyNTSUrl != null">#{easyNTSUrl},</if>
+            <if test="dwSize != null">#{dwSize},</if>
+            <if test="dwNetUnitType != null">#{dwNetUnitType},</if>
+            <if test="firmwareVersion != null">#{firmwareVersion},</if>
+            <if test="ipAddress != null">#{ipAddress},</if>
+            <if test="port != null">#{port},</if>
+            <if test="deviceRes != null">#{deviceRes},</if>
+            <if test="devType != null">#{devType},</if>
+            <if test="manufacture != null">#{manufacture},</if>
+            <if test="userName != null">#{userName},</if>
+            <if test="password != null">#{password},</if>
+            <if test="deviceSerial != null">#{deviceSerial},</if>
+            <if test="reliableTransmission != null">#{reliableTransmission},</if>
+            <if test="websocketTransmission != null">#{websocketTransmission},</if>
+            <if test="supportRedirect != null">#{supportRedirect},</if>
+            <if test="devProtocolVersion != null">#{devProtocolVersion},</if>
+            <if test="sessionKey != null">#{sessionKey},</if>
+            <if test="res != null">#{res},</if>
+            <if test="marketType != null">#{marketType},</if>
+            <if test="luserId != null">#{luserId},</if>
+            <if test="status != null">#{status},</if>
+            <if test="lat != null">#{lat},</if>
+            <if test="lng != null">#{lng},</if>
+            <if test="addressMap != null">#{addressMap},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="remark != null">#{remark},</if>
+        </trim>
+    </insert>
+
+    <update id="updateIsupDevice" parameterType="IsupDevice">
+        update isup_device
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="deptId != null">dept_id = #{deptId},</if>
+            <if test="deviceId != null and deviceId != ''">device_id = #{deviceId},</if>
+            <if test="name != null and name != ''">name = #{name},</if>
+            <if test="channel != null and channel != ''">channel = #{channel},</if>
+            <if test="playType != null">play_type = #{playType},</if>
+            <if test="url != null">url = #{url},</if>
+            <if test="streamId != null">stream_id = #{streamId},</if>
+            <if test="easyNTSUrl != null">easy_NTS_url = #{easyNTSUrl},</if>
+            <if test="dwSize != null">dw_size = #{dwSize},</if>
+            <if test="dwNetUnitType != null">dw_net_unit_type = #{dwNetUnitType},</if>
+            <if test="firmwareVersion != null">firmware_version = #{firmwareVersion},</if>
+            <if test="ipAddress != null">ip_address = #{ipAddress},</if>
+            <if test="port != null">port = #{port},</if>
+            <if test="deviceRes != null">device_res = #{deviceRes},</if>
+            <if test="devType != null">dev_type = #{devType},</if>
+            <if test="manufacture != null">manufacture = #{manufacture},</if>
+            <if test="userName != null">user_name = #{userName},</if>
+            <if test="password != null">password = #{password},</if>
+            <if test="deviceSerial != null">device_serial = #{deviceSerial},</if>
+            <if test="reliableTransmission != null">reliable_transmission = #{reliableTransmission},</if>
+            <if test="websocketTransmission != null">websocket_transmission = #{websocketTransmission},</if>
+            <if test="supportRedirect != null">support_redirect = #{supportRedirect},</if>
+            <if test="devProtocolVersion != null">dev_protocol_version = #{devProtocolVersion},</if>
+            <if test="sessionKey != null">session_key = #{sessionKey},</if>
+            <if test="res != null">res = #{res},</if>
+            <if test="marketType != null">market_type = #{marketType},</if>
+            <if test="luserId != null">luser_id = #{luserId},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="lat != null">lat = #{lat},</if>
+            <if test="lng != null">lng = #{lng},</if>
+            <if test="addressMap != null">address_map = #{addressMap},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="remark != null">remark = #{remark},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <update id="updateIsupDeviceStatusByLuserId">
+        update isup_device
+        set status = #{status}
+        where luser_id = #{lUserID} and ip_address = #{ipAddress}
+    </update>
+
+    <update id="updateIsupDeviceonLineById">
+        update isup_device
+        set status = "ON"
+        where id = #{id}
+    </update>
+    <update id="updateIsupDeviceOfflineById">
+        update isup_device
+        set status = "OFFLINE"
+        where id = #{id}
+    </update>
+
+    <delete id="deleteIsupDeviceById" parameterType="Long">
+        delete
+        from isup_device
+        where id = #{id}
+    </delete>
+
+    <delete id="deleteIsupDeviceByIds" parameterType="String">
+        delete from isup_device where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

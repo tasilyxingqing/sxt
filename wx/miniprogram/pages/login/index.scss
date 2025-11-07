@@ -1,0 +1,44 @@
+/* pages/login/index.wxss */
+.main {
+  width: 750rpx;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('http://image.taimomo.top/app%E8%B4%A6%E5%8F%B7%E7%99%BB%E9%99%86%203.png');
+  background-size: cover;
+  background-position: center; 
+  background-repeat: no-repeat; 
+
+  .form {
+    width: 700rpx;
+    height: 760rpx;
+    background-color: white;
+    border-radius: 20rpx;
+    overflow: hidden;
+    opacity: 0.8;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+
+    .formDare{
+      width: 680rpx;
+      margin-left: 10rpx;
+
+      .city-cell{
+        color: rgb(90, 90, 90);
+      }
+
+      .image {
+        width: 72px;
+        height: 36px;
+        display: block;
+        margin-top: -6px;
+        margin-bottom: -6px;
+      }
+    }
+
+    .t-empty__image {
+      width: 400rpx !important;
+      height: 400rpx !important;
+    }
+  }
+}

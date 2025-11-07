@@ -1,0 +1,21 @@
+<!--pages/cloudRecord/index.wxml-->
+<view class="container">
+  <view class="record-list">
+    <view class="record-card" wx:for="{{recordList}}" wx:key="id">
+      <view class="record-info">
+        <text class="record-app">名称：{{item.fileName}}</text>
+        <view>
+          <text class="record-time">开始时间：{{item.startTimeStr}}</text>
+        </view>
+        <text class="record-time">结束时间：{{item.endTimeStr}}</text>
+        <view>
+          <text class="record-duration">时长：{{item.timeLenStr}}</text>
+        </view>
+      </view>
+      <button class="play-btn" bindtap="playRecord" data-item="{{item}}">播放</button>
+    </view>
+  </view>
+  <view class="bottom" wx:if="{{!hasMore && recordList.length > 0}}">
+    没有更多了
+  </view>
+</view>

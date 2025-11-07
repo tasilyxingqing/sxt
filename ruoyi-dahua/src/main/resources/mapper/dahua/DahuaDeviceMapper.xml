@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.dahua.mapper.DahuaDeviceMapper">
+
+    <resultMap type="DahuaDevice" id="DahuaDeviceResult">
+        <result property="id" column="id"/>
+        <result property="deptId" column="dept_id"/>
+        <result property="deviceId" column="device_id"/>
+        <result property="ip" column="ip"/>
+        <result property="name" column="name"/>
+        <result property="port" column="port"/>
+        <result property="userName" column="user_name"/>
+        <result property="password" column="password"/>
+        <result property="channel" column="channel"/>
+        <result property="playType"    column="play_type"    />
+        <result property="url"    column="url"    />
+        <result property="streamId"    column="stream_id"    />
+        <result property="easyNTSUrl"    column="easy_NTS_url"    />
+        <result property="lat" column="lat"/>
+        <result property="lng" column="lng"/>
+        <result property="addressMap" column="address_map"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
+        <result property="deptName" column="dept_name"/>
+    </resultMap>
+
+    <sql id="selectDahuaDeviceVo">
+        select da.id,
+               da.dept_id,
+               da.device_id,
+               da.ip,
+               da.name,
+               da.port,
+               da.user_name,
+               da.password,
+               da.channel,
+               da.play_type,
+               da.url,
+               da.stream_id,
+               da.easy_NTS_url,
+               da.lat,
+               da.lng,
+               da.address_map,
+               da.create_by,
+               da.create_time,
+               da.update_by,
+               da.update_time,
+               da.remark,
+               d.dept_name
+        from dahua_device da
+                 left join sys_dept d on da.dept_id = d.dept_id
+    </sql>
+
+    <select id="selectDahuaDeviceList" parameterType="DahuaDevice" resultMap="DahuaDeviceResult">
+        <include refid="selectDahuaDeviceVo"/>
+        <where>
+            <if test="deptId != null ">and da.dept_id = #{deptId}</if>
+            <if test="ip != null  and ip != ''">and da.ip like concat('%', #{ip}, '%')</if>
+            <if test="name != null  and name != ''">and da.name like concat('%', #{name}, '%')</if>
+
+            <!-- 数据范围过滤 -->
+            ${params.dataScope}
+        </where>
+
+        order by da.create_time desc
+    </select>
+
+    <select id="selectDahuaDeviceById" parameterType="Long" resultMap="DahuaDeviceResult">
+        <include refid="selectDahuaDeviceVo"/>
+        where da.id = #{id}
+    </select>
+    <select id="selectDahuaDeviceListMap" parameterType="DahuaDevice" resultMap="DahuaDeviceResult">
+        <include refid="selectDahuaDeviceVo"/>
+        <where>
+            <if test="deptId != null ">and da.dept_id = #{deptId}</if>
+            <if test="ip != null  and ip != ''">and da.ip like concat('%', #{ip}, '%')</if>
+            <if test="name != null  and name != ''">and da.name like concat('%', #{name}, '%')</if>
+            and lat IS NOT NULL AND lng IS NOT NULL
+
+            <!-- 数据范围过滤 -->
+            ${params.dataScope}
+        </where>
+
+        order by da.create_time desc
+    </select>
+
+    <insert id="insertDahuaDevice" parameterType="DahuaDevice" useGeneratedKeys="true" keyProperty="id">
+        insert into dahua_device
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="deptId != null">dept_id,</if>
+            <if test="deviceId != null">device_id,</if>
+            <if test="ip != null">ip,</if>
+            <if test="name != null">name,</if>
+            <if test="port != null">port,</if>
+            <if test="userName != null">user_name,</if>
+            <if test="password != null">password,</if>
+            <if test="channel != null">channel,</if>
+            <if test="playType != null">play_type,</if>
+            <if test="url != null">url,</if>
+            <if test="streamId != null">stream_id,</if>
+            <if test="easyNTSUrl != null">easy_NTS_url,</if>
+            <if test="lat != null">lat,</if>
+            <if test="lng != null">lng,</if>
+            <if test="addressMap != null">address_map,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="remark != null">remark,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="deptId != null">#{deptId},</if>
+            <if test="deviceId != null">#{deviceId},</if>
+            <if test="ip != null">#{ip},</if>
+            <if test="name != null">#{name},</if>
+            <if test="port != null">#{port},</if>
+            <if test="userName != null">#{userName},</if>
+            <if test="password != null">#{password},</if>
+            <if test="channel != null">#{channel},</if>
+            <if test="playType != null">#{playType},</if>
+            <if test="url != null">#{url},</if>
+            <if test="streamId != null">#{streamId},</if>
+            <if test="easyNTSUrl != null">#{easyNTSUrl},</if>
+            <if test="lat != null">#{lat},</if>
+            <if test="lng != null">#{lng},</if>
+            <if test="addressMap != null">#{addressMap},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="remark != null">#{remark},</if>
+        </trim>
+    </insert>
+
+    <update id="updateDahuaDevice" parameterType="DahuaDevice">
+        update dahua_device
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="deptId != null">dept_id = #{deptId},</if>
+            <if test="deviceId != null">device_id = #{deviceId},</if>
+            <if test="ip != null">ip = #{ip},</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="port != null">port = #{port},</if>
+            <if test="userName != null">user_name = #{userName},</if>
+            <if test="password != null">password = #{password},</if>
+            <if test="channel != null">channel = #{channel},</if>
+            <if test="playType != null">play_type = #{playType},</if>
+            <if test="url != null">url = #{url},</if>
+            <if test="streamId != null">stream_id = #{streamId},</if>
+            <if test="easyNTSUrl != null">easy_NTS_url = #{easyNTSUrl},</if>
+            <if test="lat != null">lat = #{lat},</if>
+            <if test="lng != null">lng = #{lng},</if>
+            <if test="addressMap != null">address_map = #{addressMap},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="remark != null">remark = #{remark},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteDahuaDeviceById" parameterType="Long">
+        delete
+        from dahua_device
+        where id = #{id}
+    </delete>
+
+    <delete id="deleteDahuaDeviceByIds" parameterType="String">
+        delete from dahua_device where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
