@@ -276,22 +276,6 @@ QQ群： [![加入QQ群](https://img.shields.io/badge/已满-958943550-blue.svg)
 
 本项目自有代码使用宽松的MIT协议，在保留版权信息的情况下可以自由应用于各自商用、非商业的项目。 但是本项目也零碎的使用了一些其他的开源代码，在商用的情况下请自行替代或剔除； 由于使用本项目而产生的商业纠纷或侵权行为一概与本项目及开发者无关，请自行承担法律风险。 在使用本项目代码时，也应该在授权协议中同时表明本项目依赖的第三方库的协议。
 
-## 联系方式
-
-* 微信1: ruoyi-wvp888 备注：ruoyi-wvp
-* 微信2: qsh-network  备注：ruoyi-wvp
-
-<table>
-    <tr>
-        <td><img width="200" height="300" src="https://ry-wvp-1315132478.cos.ap-guangzhou.myqcloud.com/二维码.png"/></td>
-        <td><img width="200" height="300" src="https://ruoyi-wvp-1308576884.cos.ap-guangzhou.myqcloud.com/ruoyi-wvp/upload/wx1.jpg"/></td>
-    </tr>
-</table>
-
-## 付费社群-299永久
-
-* 微信1: ruoyi-wvp888 备注：ruoyi-wvp
-* 微信2: qsh-network  备注：ruoyi-wvp
 
 ## 特别致谢
 
